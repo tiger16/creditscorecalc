@@ -9,7 +9,6 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ── DARK THEME (default) ── */
     :root {
       --bg:        #0d0f14;
       --surface:   #161920;
@@ -18,20 +17,16 @@
       --muted:     #5a5f72;
       --text:      #e8eaf0;
       --subtext:   #9099b0;
-
-      /* Score band colors */
       --c-poor:    #e05252;
       --c-fair:    #e07d32;
       --c-good:    #d4b800;
       --c-vgood:   #52b86e;
       --c-excl:    #3ecfcf;
-
       --mono: 'JetBrains Mono', monospace;
       --display: 'Syne', sans-serif;
       --body: 'Lora', Georgia, serif;
     }
 
-    /* ── LIGHT THEME ── */
     body.light {
       --bg:        #f4f6fa;
       --surface:   #ffffff;
@@ -70,28 +65,6 @@
     }
     .theme-toggle:hover { border-color: var(--c-excl); color: var(--c-excl); }
 
-    /* ── TOP AD ── */
-    .ad-strip {
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-      padding: 0.5rem;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .ad-slot {
-      display: inline-block;
-      width: 728px;
-      max-width: 100%;
-      height: 90px;
-      border: 1px dashed var(--border);
-      line-height: 90px;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      transition: border-color 0.3s;
-    }
-
     /* ── HEADER ── */
     header {
       border-bottom: 1px solid var(--border);
@@ -102,60 +75,18 @@
       background: var(--surface);
       transition: background 0.3s, border-color 0.3s;
     }
-    .logo {
-      font-family: var(--display);
-      font-weight: 800;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
+    .logo { font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--text); }
     .logo span { color: var(--c-excl); }
-    .nav-tag {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    .nav-tag { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 
     /* ── HERO ── */
-    .hero {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 5rem 2rem 3rem;
-      text-align: center;
-    }
-    .hero-kicker {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--c-excl);
-      margin-bottom: 1.2rem;
-    }
-    .hero h1 {
-      font-family: var(--display);
-      font-weight: 800;
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 1.2rem;
-    }
-    .hero h1 .num {
-      display: inline-block;
-      color: var(--c-excl);
-      font-size: 1.1em;
-    }
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--subtext);
-      max-width: 520px;
-      margin: 0 auto 2.5rem;
-      font-style: italic;
-    }
+    .hero { max-width: 900px; margin: 0 auto; padding: 5rem 2rem 3rem; text-align: center; }
+    .hero-kicker { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--c-excl); margin-bottom: 1.2rem; }
+    .hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.05; letter-spacing: -0.03em; color: var(--text); margin-bottom: 1.2rem; }
+    .hero h1 .num { display: inline-block; color: var(--c-excl); font-size: 1.1em; }
+    .hero-sub { font-size: 1.05rem; color: var(--subtext); max-width: 520px; margin: 0 auto 2.5rem; font-style: italic; }
 
-    /* ── INTERACTIVE GAUGE ── */
+    /* ── GAUGE ── */
     .gauge-wrap {
       max-width: 700px;
       margin: 0 auto 1rem;
@@ -165,314 +96,173 @@
       padding: 2.5rem 2rem 2rem;
       transition: background 0.3s, border-color 0.3s;
     }
-    .gauge-label {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      text-align: left;
-    }
-
-    /* SVG arc gauge */
-    .arc-container {
-      position: relative;
-      width: 100%;
-      max-width: 380px;
-      margin: 0 auto 1.5rem;
-    }
+    .gauge-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; text-align: left; }
+    .arc-container { position: relative; width: 100%; max-width: 380px; margin: 0 auto 1.5rem; }
     .arc-container svg { width: 100%; height: auto; }
-    .gauge-center {
-      position: absolute;
-      top: 52%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-    .gauge-score {
-      font-family: var(--display);
-      font-weight: 800;
-      font-size: 3.2rem;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      transition: color 0.3s;
-    }
-    .gauge-band {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 0.2rem;
-      transition: color 0.3s;
-    }
+    .gauge-center { position: absolute; top: 52%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .gauge-score { font-family: var(--display); font-weight: 800; font-size: 3.2rem; line-height: 1; letter-spacing: -0.03em; transition: color 0.3s; }
+    .gauge-band { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; transition: color 0.3s; }
 
     /* Slider */
-    .score-slider-row {
+    .score-slider-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .score-slider-row span { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+    input[type="range"]#score-range { flex: 1; accent-color: var(--c-excl); cursor: pointer; }
+
+    /* ── SCORE INPUT TAB ── */
+    .score-input-row {
       display: flex;
       align-items: center;
-      gap: 1rem;
-    }
-    .score-slider-row span {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    input[type="range"]#score-range {
-      flex: 1;
-      accent-color: var(--c-excl);
-      cursor: pointer;
-    }
-
-    /* ── SCORE BAND TRACK ── */
-    .band-track {
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      display: flex;
-      border-radius: 4px;
-      overflow: hidden;
-      height: 10px;
-    }
-    .band-seg {
-      flex: 1;
-      transition: opacity 0.3s;
-    }
-    .band-seg.poor   { background: var(--c-poor); }
-    .band-seg.fair   { background: var(--c-fair); }
-    .band-seg.good   { background: var(--c-good); }
-    .band-seg.vgood  { background: var(--c-vgood); }
-    .band-seg.excl   { background: var(--c-excl); }
-    .band-seg.dim    { opacity: 0.2; }
-
-    /* ── RANGES TABLE ── */
-    .ranges-wrap {
-      max-width: 900px;
-      margin: 0 auto 1rem;
-      padding: 0 2rem;
-    }
-    .section-head {
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: 1.5rem;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-    .section-sub {
-      font-size: 0.9rem;
-      color: var(--subtext);
-      font-style: italic;
-      margin-bottom: 1.5rem;
-    }
-    .range-cards {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      justify-content: center;
       gap: 0.75rem;
-      margin-bottom: 3rem;
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
     }
-    .range-card {
-      background: var(--surface);
+    .score-input-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .score-input-field {
+      width: 90px;
+      padding: 0.45rem 0.7rem;
+      background: var(--surface2);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 1.2rem 1rem;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.2s, transform 0.15s, background 0.3s;
-      position: relative;
-    }
-    .range-card:hover { transform: translateY(-2px); }
-    .range-card.active { border-width: 2px; }
-    .range-card .rc-band {
+      color: var(--text);
       font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: center;
+      transition: border-color 0.2s, background 0.3s;
+      -moz-appearance: textfield;
     }
-    .range-card .rc-range {
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
-    .range-card .rc-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      margin: 0 auto 0.6rem;
-    }
-    .range-card .rc-desc {
+    .score-input-field::-webkit-outer-spin-button,
+    .score-input-field::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .score-input-field:focus { outline: none; border-color: var(--c-excl); }
+    .score-input-field.invalid { border-color: var(--c-poor); color: var(--c-poor); }
+    .score-input-btn {
+      padding: 0.45rem 1.1rem;
+      background: var(--c-excl);
+      color: #0d0f14;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--mono);
       font-size: 0.75rem;
-      color: var(--subtext);
-      line-height: 1.5;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
-    .poor-card  { border-color: var(--c-poor);  }
-    .fair-card  { border-color: var(--c-fair);  }
-    .good-card  { border-color: var(--c-good);  }
+    .score-input-btn:hover { opacity: 0.85; }
+    .score-input-hint { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin-top: 0.35rem; text-align: center; }
+    .score-input-error { font-family: var(--mono); font-size: 0.65rem; color: var(--c-poor); margin-top: 0.35rem; text-align: center; min-height: 1rem; }
+
+    /* ── BAND TRACK ── */
+    .band-track { max-width: 700px; margin: 0 auto 3rem; display: flex; border-radius: 4px; overflow: hidden; height: 10px; }
+    .band-seg { flex: 1; transition: opacity 0.3s; }
+    .band-seg.poor  { background: var(--c-poor); }
+    .band-seg.fair  { background: var(--c-fair); }
+    .band-seg.good  { background: var(--c-good); }
+    .band-seg.vgood { background: var(--c-vgood); }
+    .band-seg.excl  { background: var(--c-excl); }
+    .band-seg.dim   { opacity: 0.2; }
+
+    /* ── IMPACT PANEL ── */
+    .impact-wrap { max-width: 900px; margin: 0 auto 1rem; padding: 0 2rem; }
+    .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 3rem; }
+    .impact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem 1rem; text-align: center; transition: background 0.3s, border-color 0.3s; }
+    .impact-card-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .impact-card-value { font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; line-height: 1.1; transition: color 0.3s; }
+    .impact-card-sub { font-size: 0.72rem; color: var(--subtext); margin-top: 0.25rem; }
+
+    /* ── UTILIZATION CALC ── */
+    .util-wrap { max-width: 900px; margin: 0 auto 1rem; padding: 0 2rem; }
+    .util-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.8rem 2rem; margin-bottom: 3rem; transition: background 0.3s, border-color 0.3s; }
+    .util-box h3 { font-family: var(--display); font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+    .util-box .util-sub { font-size: 0.82rem; color: var(--subtext); font-style: italic; margin-bottom: 1.25rem; }
+    .util-fields { display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.75rem; align-items: end; }
+    .util-field label { display: block; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .util-field input {
+      width: 100%;
+      padding: 0.55rem 0.8rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      transition: border-color 0.2s, background 0.3s;
+      -moz-appearance: textfield;
+    }
+    .util-field input::-webkit-outer-spin-button,
+    .util-field input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .util-field input:focus { outline: none; border-color: var(--c-excl); }
+    .util-calc-btn { padding: 0.55rem 1.3rem; background: var(--c-excl); color: #0d0f14; border: none; border-radius: 6px; font-family: var(--mono); font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; }
+    .util-calc-btn:hover { opacity: 0.85; }
+    .util-result { margin-top: 1rem; padding: 0.9rem 1.1rem; border-radius: 6px; font-family: var(--mono); font-size: 0.85rem; display: none; }
+    .util-result.show { display: block; }
+    .util-result.green { background: rgba(82,184,110,0.12); color: var(--c-vgood); border: 1px solid rgba(82,184,110,0.25); }
+    .util-result.yellow { background: rgba(212,184,0,0.12); color: var(--c-good); border: 1px solid rgba(212,184,0,0.25); }
+    .util-result.red { background: rgba(224,82,82,0.12); color: var(--c-poor); border: 1px solid rgba(224,82,82,0.25); }
+
+    /* ── RANGES ── */
+    .ranges-wrap { max-width: 900px; margin: 0 auto 1rem; padding: 0 2rem; }
+    .section-head { font-family: var(--display); font-weight: 700; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--text); margin-bottom: 0.3rem; }
+    .section-sub { font-size: 0.9rem; color: var(--subtext); font-style: italic; margin-bottom: 1.5rem; }
+    .range-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem; margin-bottom: 3rem; }
+    .range-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem 1rem; text-align: center; cursor: pointer; transition: border-color 0.2s, transform 0.15s, background 0.3s; }
+    .range-card:hover { transform: translateY(-2px); }
+    .range-card .rc-band { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .range-card .rc-range { font-family: var(--display); font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .range-card .rc-dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 0.6rem; }
+    .range-card .rc-desc { font-size: 0.75rem; color: var(--subtext); line-height: 1.5; }
+    .poor-card  { border-color: var(--c-poor); }
+    .fair-card  { border-color: var(--c-fair); }
+    .good-card  { border-color: var(--c-good); }
     .vgood-card { border-color: var(--c-vgood); }
-    .excl-card  { border-color: var(--c-excl);  }
+    .excl-card  { border-color: var(--c-excl); }
 
     /* ── FACTORS ── */
-    .factors-wrap {
-      max-width: 900px;
-      margin: 0 auto 1rem;
-      padding: 0 2rem;
-    }
-    .factors-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.85rem;
-      margin-bottom: 3rem;
-    }
-    .factor-row {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.3rem 1.6rem;
-      display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 1.25rem;
-      align-items: center;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .factor-pct {
-      font-family: var(--display);
-      font-weight: 800;
-      font-size: 2rem;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: var(--c-excl);
-      text-align: center;
-      flex-shrink: 0;
-    }
-    .factor-body h4 {
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-    .factor-body p {
-      font-size: 0.875rem;
-      color: var(--subtext);
-      line-height: 1.6;
-    }
-
-    /* ── MID AD ── */
-    .ad-mid {
-      text-align: center;
-      padding: 1rem 2rem 2rem;
-    }
+    .factors-wrap { max-width: 900px; margin: 0 auto 1rem; padding: 0 2rem; }
+    .factors-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; margin-bottom: 3rem; }
+    .factor-row { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.3rem 1.6rem; display: grid; grid-template-columns: 72px 1fr; gap: 1.25rem; align-items: center; transition: background 0.3s, border-color 0.3s; }
+    .factor-pct { font-family: var(--display); font-weight: 800; font-size: 2rem; line-height: 1; letter-spacing: -0.03em; color: var(--c-excl); text-align: center; }
+    .factor-body h4 { font-family: var(--display); font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.3rem; }
+    .factor-body p { font-size: 0.875rem; color: var(--subtext); line-height: 1.6; }
 
     /* ── TIPS ── */
-    .tips-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2rem 4rem;
-    }
-    .tips-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-    .tip-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.4rem;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .tip-num {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-    .tip-card h4 {
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-    .tip-card p {
-      font-size: 0.82rem;
-      color: var(--subtext);
-      line-height: 1.6;
-    }
-    .tip-impact {
-      display: inline-block;
-      margin-top: 0.6rem;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.5rem;
-      border-radius: 2px;
-      background: rgba(62,207,207,0.1);
-      color: var(--c-excl);
-    }
+    .tips-wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .tips-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .tip-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.4rem; transition: background 0.3s, border-color 0.3s; }
+    .tip-num { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.5rem; }
+    .tip-card h4 { font-family: var(--display); font-weight: 700; font-size: 0.95rem; color: var(--text); margin-bottom: 0.4rem; }
+    .tip-card p { font-size: 0.82rem; color: var(--subtext); line-height: 1.6; }
+    .tip-impact { display: inline-block; margin-top: 0.6rem; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 2px; background: rgba(62,207,207,0.1); color: var(--c-excl); }
 
     /* ── FAQ ── */
-    .faq-wrap {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 2rem 5rem;
-    }
-    .faq-item {
-      border-top: 1px solid var(--border);
-      padding: 1.2rem 0;
-    }
+    .faq-wrap { max-width: 700px; margin: 0 auto; padding: 0 2rem 5rem; }
+    .faq-item { border-top: 1px solid var(--border); padding: 1.2rem 0; }
     .faq-item:last-child { border-bottom: 1px solid var(--border); }
-    .faq-q {
-      font-family: var(--display);
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--text);
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
+    .faq-q { font-family: var(--display); font-weight: 700; font-size: 0.95rem; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
     .faq-q .arrow { color: var(--muted); font-style: normal; transition: transform 0.2s; font-family: var(--mono); }
     .faq-q.open .arrow { transform: rotate(180deg); color: var(--c-excl); }
-    .faq-a {
-      font-size: 0.88rem;
-      color: var(--subtext);
-      line-height: 1.7;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.2s;
-      padding-top: 0;
-    }
+    .faq-a { font-size: 0.88rem; color: var(--subtext); line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.2s; padding-top: 0; }
     .faq-a.open { max-height: 300px; padding-top: 0.75rem; }
 
     /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 1.5rem 2rem;
-      text-align: center;
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-      background: var(--surface);
-      transition: background 0.3s, border-color 0.3s;
-    }
+    footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.03em; background: var(--surface); transition: background 0.3s, border-color 0.3s; }
     footer a { color: var(--muted); text-decoration: underline; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
       .range-cards { grid-template-columns: 1fr 1fr; }
-      .factors-grid { grid-template-columns: 1fr; }
       .tips-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
       header { flex-direction: column; gap: 0.3rem; align-items: flex-start; }
+      .util-fields { grid-template-columns: 1fr 1fr; }
+      .util-fields .util-calc-btn { grid-column: 1 / -1; }
+      .score-input-row { flex-wrap: wrap; }
     }
     @media (max-width: 420px) {
       .range-cards { grid-template-columns: 1fr; }
+      .util-fields { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
@@ -480,12 +270,6 @@
   </style>
 </head>
 <body>
-
-<!-- TOP AD -->
-<div class="ad-strip">
-  <!-- Google AdSense: replace this div -->
-  <div class="ad-slot">Advertisement — 728×90</div>
-</div>
 
 <!-- HEADER -->
 <header>
@@ -500,22 +284,18 @@
 <section class="hero">
   <p class="hero-kicker">FICO · VantageScore · Credit Ranges</p>
   <h1>Your credit score is<br>just <span class="num" id="hero-num">3 numbers</span>.<br>Here's what they cost you.</h1>
-  <p class="hero-sub">Move the slider to see what your score means — and exactly what changes when you improve it.</p>
+  <p class="hero-sub">Enter your score or drag the slider to see what your number means — and exactly what changes when you improve it.</p>
 
   <!-- GAUGE -->
   <div class="gauge-wrap">
-    <p class="gauge-label">Drag to explore your score range</p>
+    <p class="gauge-label">Enter your score or drag to explore</p>
     <div class="arc-container">
       <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-        <!-- Track arc -->
         <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#252830" stroke-width="14" stroke-linecap="round"/>
-        <!-- Score arc (drawn via JS) -->
         <path id="gauge-arc" d="M 20 100 A 80 80 0 0 1 20 100" fill="none" stroke="#3ecfcf" stroke-width="14" stroke-linecap="round"/>
-        <!-- Tick marks -->
         <line x1="20"  y1="100" x2="23"  y2="100" stroke="#3a3f50" stroke-width="1.5"/>
         <line x1="100" y1="20"  x2="100" y2="24"  stroke="#3a3f50" stroke-width="1.5"/>
         <line x1="180" y1="100" x2="177" y2="100" stroke="#3a3f50" stroke-width="1.5"/>
-        <!-- Labels -->
         <text x="14"  y="113" font-family="JetBrains Mono" font-size="7" fill="#5a5f72" text-anchor="middle">300</text>
         <text x="100" y="14"  font-family="JetBrains Mono" font-size="7" fill="#5a5f72" text-anchor="middle">660</text>
         <text x="186" y="113" font-family="JetBrains Mono" font-size="7" fill="#5a5f72" text-anchor="middle">850</text>
@@ -531,6 +311,23 @@
       <input type="range" id="score-range" min="300" max="850" value="720" step="1"/>
       <span>850</span>
     </div>
+
+    <!-- SCORE INPUT TAB -->
+    <div class="score-input-row">
+      <span class="score-input-label">Type your score:</span>
+      <input
+        type="number"
+        id="score-input"
+        class="score-input-field"
+        min="300"
+        max="850"
+        placeholder="720"
+        aria-label="Enter your credit score between 300 and 850"
+      />
+      <button class="score-input-btn" onclick="applyTypedScore()">Apply</button>
+    </div>
+    <div class="score-input-error" id="score-input-error"></div>
+    <div class="score-input-hint">Enter any score between 300 and 850, then press Apply or Enter</div>
   </div>
 
   <!-- BAND TRACK -->
@@ -542,6 +339,49 @@
     <div class="band-seg excl"  id="seg-excl"></div>
   </div>
 </section>
+
+<!-- SCORE IMPACT PANEL -->
+<div class="impact-wrap">
+  <h2 class="section-head">What your score gets you</h2>
+  <p class="section-sub">Estimated rates and lending outcomes — based on your current score band.</p>
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-card-label">30-yr Mortgage Rate</div>
+      <div class="impact-card-value" id="impact-mortgage">—</div>
+      <div class="impact-card-sub">Estimated APR</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-card-label">Auto Loan Rate</div>
+      <div class="impact-card-value" id="impact-auto">—</div>
+      <div class="impact-card-sub">Estimated APR</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-card-label">Credit Card APR</div>
+      <div class="impact-card-value" id="impact-card">—</div>
+      <div class="impact-card-sub">Estimated range</div>
+    </div>
+  </div>
+</div>
+
+<!-- UTILIZATION CALCULATOR -->
+<div class="util-wrap">
+  <div class="util-box">
+    <h3>Credit Utilization Calculator</h3>
+    <p class="util-sub">Utilization is 30% of your FICO score. Enter your numbers to see where you stand.</p>
+    <div class="util-fields">
+      <div class="util-field">
+        <label for="util-balance">Total Card Balances ($)</label>
+        <input type="number" id="util-balance" placeholder="e.g. 2500" min="0"/>
+      </div>
+      <div class="util-field">
+        <label for="util-limit">Total Credit Limit ($)</label>
+        <input type="number" id="util-limit" placeholder="e.g. 10000" min="0"/>
+      </div>
+      <button class="util-calc-btn" onclick="calcUtil()">Calculate</button>
+    </div>
+    <div class="util-result" id="util-result"></div>
+  </div>
+</div>
 
 <!-- SCORE RANGES -->
 <div class="ranges-wrap">
@@ -624,12 +464,6 @@
   </div>
 </div>
 
-<!-- MID AD -->
-<div class="ad-mid">
-  <!-- Google AdSense: replace this div -->
-  <div class="ad-slot">Advertisement — 728×90</div>
-</div>
-
 <!-- TIPS -->
 <div class="tips-wrap">
   <h2 class="section-head" style="margin-bottom:0.3rem">How to raise it — fast</h2>
@@ -677,7 +511,6 @@
 <!-- FAQ -->
 <div class="faq-wrap">
   <h2 class="section-head" style="margin-bottom:1.5rem">Common questions</h2>
-
   <div class="faq-item">
     <div class="faq-q" onclick="toggleFaq(this)">How often does my credit score update? <span class="arrow">▼</span></div>
     <div class="faq-a">Lenders report to bureaus roughly once a month — usually on your statement closing date. So your score typically refreshes monthly, though the exact timing varies by creditor.</div>
@@ -706,7 +539,6 @@
 </footer>
 
 <script>
-  // ── Theme toggle ──
   function toggleTheme() {
     const isLight = document.body.classList.toggle('light');
     document.getElementById('theme-icon').textContent  = isLight ? '🌙' : '☀️';
@@ -715,51 +547,51 @@
   }
 
   const bands = [
-    { name: 'Poor',      min: 300, max: 579, color: '#e05252', seg: 'poor'  },
-    { name: 'Fair',      min: 580, max: 669, color: '#e07d32', seg: 'fair'  },
-    { name: 'Good',      min: 670, max: 739, color: '#d4b800', seg: 'good'  },
-    { name: 'Very Good', min: 740, max: 799, color: '#52b86e', seg: 'vgood' },
-    { name: 'Exceptional',min:800, max: 850, color: '#3ecfcf', seg: 'excl'  },
+    { name: 'Poor',        min: 300, max: 579, color: '#e05252', seg: 'poor'  },
+    { name: 'Fair',        min: 580, max: 669, color: '#e07d32', seg: 'fair'  },
+    { name: 'Good',        min: 670, max: 739, color: '#d4b800', seg: 'good'  },
+    { name: 'Very Good',   min: 740, max: 799, color: '#52b86e', seg: 'vgood' },
+    { name: 'Exceptional', min: 800, max: 850, color: '#3ecfcf', seg: 'excl'  },
   ];
+
+  const rateData = {
+    'Poor':        { mortgage: '8.5–9.5%', auto: '12–14%', card: '24–29%', color: '#e05252' },
+    'Fair':        { mortgage: '7.5–8.5%', auto: '9–12%',  card: '21–26%', color: '#e07d32' },
+    'Good':        { mortgage: '6.8–7.5%', auto: '6–9%',   card: '19–23%', color: '#d4b800' },
+    'Very Good':   { mortgage: '6.3–6.8%', auto: '4–6%',   card: '16–20%', color: '#52b86e' },
+    'Exceptional': { mortgage: '6.0–6.3%', auto: '3–4%',   card: '14–17%', color: '#3ecfcf' },
+  };
 
   function getBand(score) {
     return bands.find(b => score >= b.min && score <= b.max) || bands[0];
   }
 
   function scoreToAngle(score) {
-    // 300 → 180°, 850 → 0° (left to right arc)
     return 180 - ((score - 300) / 550) * 180;
   }
 
   function polarToXY(angleDeg, r, cx, cy) {
     const rad = (angleDeg * Math.PI) / 180;
-    return {
-      x: cx + r * Math.cos(rad),
-      y: cy - r * Math.sin(rad),
-    };
+    return { x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad) };
   }
 
   function updateGauge(score) {
     const band = getBand(score);
-    const scoreEl  = document.getElementById('gauge-score-num');
-    const bandEl   = document.getElementById('gauge-band-label');
-    const arcEl    = document.getElementById('gauge-arc');
-    const heroNum  = document.getElementById('hero-num');
 
-    scoreEl.textContent = score;
-    scoreEl.style.color = band.color;
-    bandEl.textContent  = band.name;
-    bandEl.style.color  = band.color;
-    heroNum.textContent = score;
+    document.getElementById('gauge-score-num').textContent = score;
+    document.getElementById('gauge-score-num').style.color = band.color;
+    document.getElementById('gauge-band-label').textContent = band.name;
+    document.getElementById('gauge-band-label').style.color = band.color;
+    document.getElementById('hero-num').textContent = score;
 
-    // Arc path: from left (180°) to score angle
+    // Arc
     const cx = 100, cy = 100, r = 80;
     const startAngle = 180;
     const endAngle   = scoreToAngle(score);
     const start = polarToXY(startAngle, r, cx, cy);
     const end   = polarToXY(endAngle,   r, cx, cy);
     const largeArc = (startAngle - endAngle) > 180 ? 1 : 0;
-
+    const arcEl = document.getElementById('gauge-arc');
     if (score === 300) {
       arcEl.setAttribute('d', `M ${start.x} ${start.y} A ${r} ${r} 0 0 1 ${start.x} ${start.y}`);
     } else {
@@ -767,11 +599,26 @@
     }
     arcEl.setAttribute('stroke', band.color);
 
-    // Dim inactive segments
+    // Band segments
     bands.forEach(b => {
-      const seg = document.getElementById('seg-' + b.seg);
-      seg.classList.toggle('dim', b.name !== band.name);
+      document.getElementById('seg-' + b.seg).classList.toggle('dim', b.name !== band.name);
     });
+
+    // Rate impact panel
+    const rates = rateData[band.name];
+    ['mortgage', 'auto', 'card'].forEach(key => {
+      const el = document.getElementById('impact-' + key);
+      el.textContent = rates[key];
+      el.style.color = rates.color;
+    });
+
+    // Sync number input (but don't overwrite while user is typing)
+    const scoreInput = document.getElementById('score-input');
+    if (document.activeElement !== scoreInput) {
+      scoreInput.value = score;
+    }
+    document.getElementById('score-input-error').textContent = '';
+    scoreInput.classList.remove('invalid');
   }
 
   function setScore(val) {
@@ -783,10 +630,60 @@
     updateGauge(+this.value);
   });
 
+  // Typed score input
+  function applyTypedScore() {
+    const input = document.getElementById('score-input');
+    const errEl = document.getElementById('score-input-error');
+    const val = parseInt(input.value, 10);
+    if (isNaN(val)) {
+      errEl.textContent = 'Please enter a number.';
+      input.classList.add('invalid');
+      return;
+    }
+    if (val < 300 || val > 850) {
+      errEl.textContent = 'Score must be between 300 and 850.';
+      input.classList.add('invalid');
+      return;
+    }
+    input.classList.remove('invalid');
+    errEl.textContent = '';
+    setScore(val);
+  }
+
+  document.getElementById('score-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') applyTypedScore();
+  });
+
+  // Utilization calculator
+  function calcUtil() {
+    const balance = parseFloat(document.getElementById('util-balance').value);
+    const limit   = parseFloat(document.getElementById('util-limit').value);
+    const result  = document.getElementById('util-result');
+
+    if (isNaN(balance) || isNaN(limit) || limit <= 0) {
+      result.className = 'util-result show red';
+      result.textContent = '⚠ Please enter valid balance and credit limit values.';
+      return;
+    }
+    const pct = (balance / limit) * 100;
+    const rounded = pct.toFixed(1);
+
+    if (pct <= 10) {
+      result.className = 'util-result show green';
+      result.textContent = `✓ Your utilization is ${rounded}% — excellent. This range maximizes your score contribution.`;
+    } else if (pct <= 30) {
+      result.className = 'util-result show yellow';
+      result.textContent = `◑ Your utilization is ${rounded}% — acceptable, but bringing it under 10% could add 10–30 points.`;
+    } else {
+      const targetBalance = Math.floor(limit * 0.30).toLocaleString();
+      result.className = 'util-result show red';
+      result.textContent = `✗ Your utilization is ${rounded}% — high. Pay down to $${targetBalance} to drop below 30% and protect your score.`;
+    }
+  }
+
   function toggleFaq(el) {
     const ans = el.nextElementSibling;
     const isOpen = ans.classList.contains('open');
-    // Close all
     document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
     document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
     if (!isOpen) {
