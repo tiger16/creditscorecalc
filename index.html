@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Credit Score Explained — What Your Number Actually Means</title>
+  <meta name="description" content="Understand your credit score range, what affects it, and exactly how to improve it. Free, no sign-up required."/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Lora:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── DARK THEME (default) ── */
+    :root {
+      --bg:        #0d0f14;
+      --surface:   #161920;
+      --surface2:  #11131a;
+      --border:    #252830;
+      --muted:     #5a5f72;
+      --text:      #e8eaf0;
+      --subtext:   #9099b0;
+
+      /* Score band colors */
+      --c-poor:    #e05252;
+      --c-fair:    #e07d32;
+      --c-good:    #d4b800;
+      --c-vgood:   #52b86e;
+      --c-excl:    #3ecfcf;
+
+      --mono: 'JetBrains Mono', monospace;
+      --display: 'Syne', sans-serif;
+      --body: 'Lora', Georgia, serif;
+    }
+
+    /* ── LIGHT THEME ── */
+    body.light {
+      --bg:        #f4f6fa;
+      --surface:   #ffffff;
+      --surface2:  #eef1f7;
+      --border:    #d8dce8;
+      --muted:     #8a90a8;
+      --text:      #12151f;
+      --subtext:   #4a5068;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      line-height: 1.7;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ── THEME TOGGLE ── */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.35rem 0.85rem;
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .theme-toggle:hover { border-color: var(--c-excl); color: var(--c-excl); }
+
+    /* ── TOP AD ── */
+    .ad-strip {
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      padding: 0.5rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .ad-slot {
+      display: inline-block;
+      width: 728px;
+      max-width: 100%;
+      height: 90px;
+      border: 1px dashed var(--border);
+      line-height: 90px;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      transition: border-color 0.3s;
+    }
+
+    /* ── HEADER ── */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .logo {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .logo span { color: var(--c-excl); }
+    .nav-tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero-kicker {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--c-excl);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 .num {
+      display: inline-block;
+      color: var(--c-excl);
+      font-size: 1.1em;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--subtext);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      font-style: italic;
+    }
+
+    /* ── INTERACTIVE GAUGE ── */
+    .gauge-wrap {
+      max-width: 700px;
+      margin: 0 auto 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem 2rem 2rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .gauge-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    /* SVG arc gauge */
+    .arc-container {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto 1.5rem;
+    }
+    .arc-container svg { width: 100%; height: auto; }
+    .gauge-center {
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .gauge-score {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 3.2rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      transition: color 0.3s;
+    }
+    .gauge-band {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+      transition: color 0.3s;
+    }
+
+    /* Slider */
+    .score-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .score-slider-row span {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    input[type="range"]#score-range {
+      flex: 1;
+      accent-color: var(--c-excl);
+      cursor: pointer;
+    }
+
+    /* ── SCORE BAND TRACK ── */
+    .band-track {
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      display: flex;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 10px;
+    }
+    .band-seg {
+      flex: 1;
+      transition: opacity 0.3s;
+    }
+    .band-seg.poor   { background: var(--c-poor); }
+    .band-seg.fair   { background: var(--c-fair); }
+    .band-seg.good   { background: var(--c-good); }
+    .band-seg.vgood  { background: var(--c-vgood); }
+    .band-seg.excl   { background: var(--c-excl); }
+    .band-seg.dim    { opacity: 0.2; }
+
+    /* ── RANGES TABLE ── */
+    .ranges-wrap {
+      max-width: 900px;
+      margin: 0 auto 1rem;
+      padding: 0 2rem;
+    }
+    .section-head {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--subtext);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .range-cards {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+    .range-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.15s, background 0.3s;
+      position: relative;
+    }
+    .range-card:hover { transform: translateY(-2px); }
+    .range-card.active { border-width: 2px; }
+    .range-card .rc-band {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .range-card .rc-range {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .range-card .rc-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      margin: 0 auto 0.6rem;
+    }
+    .range-card .rc-desc {
+      font-size: 0.75rem;
+      color: var(--subtext);
+      line-height: 1.5;
+    }
+    .poor-card  { border-color: var(--c-poor);  }
+    .fair-card  { border-color: var(--c-fair);  }
+    .good-card  { border-color: var(--c-good);  }
+    .vgood-card { border-color: var(--c-vgood); }
+    .excl-card  { border-color: var(--c-excl);  }
+
+    /* ── FACTORS ── */
+    .factors-wrap {
+      max-width: 900px;
+      margin: 0 auto 1rem;
+      padding: 0 2rem;
+    }
+    .factors-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+      margin-bottom: 3rem;
+    }
+    .factor-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.3rem 1.6rem;
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 1.25rem;
+      align-items: center;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .factor-pct {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--c-excl);
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .factor-body h4 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .factor-body p {
+      font-size: 0.875rem;
+      color: var(--subtext);
+      line-height: 1.6;
+    }
+
+    /* ── MID AD ── */
+    .ad-mid {
+      text-align: center;
+      padding: 1rem 2rem 2rem;
+    }
+
+    /* ── TIPS ── */
+    .tips-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .tip-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.4rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .tip-num {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .tip-card h4 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .tip-card p {
+      font-size: 0.82rem;
+      color: var(--subtext);
+      line-height: 1.6;
+    }
+    .tip-impact {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      background: rgba(62,207,207,0.1);
+      color: var(--c-excl);
+    }
+
+    /* ── FAQ ── */
+    .faq-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+    .faq-item {
+      border-top: 1px solid var(--border);
+      padding: 1.2rem 0;
+    }
+    .faq-item:last-child { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .faq-q .arrow { color: var(--muted); font-style: normal; transition: transform 0.2s; font-family: var(--mono); }
+    .faq-q.open .arrow { transform: rotate(180deg); color: var(--c-excl); }
+    .faq-a {
+      font-size: 0.88rem;
+      color: var(--subtext);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s;
+      padding-top: 0;
+    }
+    .faq-a.open { max-height: 300px; padding-top: 0.75rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      background: var(--surface);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    footer a { color: var(--muted); text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .range-cards { grid-template-columns: 1fr 1fr; }
+      .factors-grid { grid-template-columns: 1fr; }
+      .tips-grid { grid-template-columns: 1fr; }
+      header { flex-direction: column; gap: 0.3rem; align-items: flex-start; }
+    }
+    @media (max-width: 420px) {
+      .range-cards { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP AD -->
+<div class="ad-strip">
+  <!-- Google AdSense: replace this div -->
+  <div class="ad-slot">Advertisement — 728×90</div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Score<span>IQ</span></div>
+  <div class="nav-tag">Credit Score Guide · Free · No Sign-Up</div>
+  <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle light mode">
+    <span id="theme-icon">☀️</span><span id="theme-label">Light</span>
+  </button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-kicker">FICO · VantageScore · Credit Ranges</p>
+  <h1>Your credit score is<br>just <span class="num" id="hero-num">3 numbers</span>.<br>Here's what they cost you.</h1>
+  <p class="hero-sub">Move the slider to see what your score means — and exactly what changes when you improve it.</p>
+
+  <!-- GAUGE -->
+  <div class="gauge-wrap">
+    <p class="gauge-label">Drag to explore your score range</p>
+    <div class="arc-container">
+      <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
+        <!-- Track arc -->
+        <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#252830" stroke-width="14" stroke-linecap="round"/>
+        <!-- Score arc (drawn via JS) -->
+        <path id="gauge-arc" d="M 20 100 A 80 80 0 0 1 20 100" fill="none" stroke="#3ecfcf" stroke-width="14" stroke-linecap="round"/>
+        <!-- Tick marks -->
+        <line x1="20"  y1="100" x2="23"  y2="100" stroke="#3a3f50" stroke-width="1.5"/>
+        <line x1="100" y1="20"  x2="100" y2="24"  stroke="#3a3f50" stroke-width="1.5"/>
+        <line x1="180" y1="100" x2="177" y2="100" stroke="#3a3f50" stroke-width="1.5"/>
+        <!-- Labels -->
+        <text x="14"  y="113" font-family="JetBrains Mono" font-size="7" fill="#5a5f72" text-anchor="middle">300</text>
+        <text x="100" y="14"  font-family="JetBrains Mono" font-size="7" fill="#5a5f72" text-anchor="middle">660</text>
+        <text x="186" y="113" font-family="JetBrains Mono" font-size="7" fill="#5a5f72" text-anchor="middle">850</text>
+      </svg>
+      <div class="gauge-center">
+        <div class="gauge-score" id="gauge-score-num">720</div>
+        <div class="gauge-band" id="gauge-band-label">Good</div>
+      </div>
+    </div>
+
+    <div class="score-slider-row">
+      <span>300</span>
+      <input type="range" id="score-range" min="300" max="850" value="720" step="1"/>
+      <span>850</span>
+    </div>
+  </div>
+
+  <!-- BAND TRACK -->
+  <div class="band-track">
+    <div class="band-seg poor"  id="seg-poor"></div>
+    <div class="band-seg fair"  id="seg-fair"></div>
+    <div class="band-seg good"  id="seg-good"></div>
+    <div class="band-seg vgood" id="seg-vgood"></div>
+    <div class="band-seg excl"  id="seg-excl"></div>
+  </div>
+</section>
+
+<!-- SCORE RANGES -->
+<div class="ranges-wrap">
+  <h2 class="section-head">What each range means</h2>
+  <p class="section-sub">Click any band to jump to that score on the gauge.</p>
+  <div class="range-cards">
+    <div class="range-card poor-card" onclick="setScore(550)">
+      <div class="rc-dot" style="background:var(--c-poor)"></div>
+      <div class="rc-band" style="color:var(--c-poor)">Poor</div>
+      <div class="rc-range">300–579</div>
+      <div class="rc-desc">Most lenders decline. Secured cards only. Deposits often required.</div>
+    </div>
+    <div class="range-card fair-card" onclick="setScore(620)">
+      <div class="rc-dot" style="background:var(--c-fair)"></div>
+      <div class="rc-band" style="color:var(--c-fair)">Fair</div>
+      <div class="rc-range">580–669</div>
+      <div class="rc-desc">Some approvals but high rates. Subprime territory for mortgages.</div>
+    </div>
+    <div class="range-card good-card" onclick="setScore(720)">
+      <div class="rc-dot" style="background:var(--c-good)"></div>
+      <div class="rc-band" style="color:var(--c-good)">Good</div>
+      <div class="rc-range">670–739</div>
+      <div class="rc-desc">Approved for most products. Rates still above the best available.</div>
+    </div>
+    <div class="range-card vgood-card" onclick="setScore(780)">
+      <div class="rc-dot" style="background:var(--c-vgood)"></div>
+      <div class="rc-band" style="color:var(--c-vgood)">Very Good</div>
+      <div class="rc-range">740–799</div>
+      <div class="rc-desc">Near-best rates on mortgages, auto loans, and cards.</div>
+    </div>
+    <div class="range-card excl-card" onclick="setScore(820)">
+      <div class="rc-dot" style="background:var(--c-excl)"></div>
+      <div class="rc-band" style="color:var(--c-excl)">Exceptional</div>
+      <div class="rc-range">800–850</div>
+      <div class="rc-desc">Best rates, easiest approvals, and highest credit limits offered.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FACTORS -->
+<div class="factors-wrap">
+  <h2 class="section-head">What builds your score</h2>
+  <p class="section-sub">FICO weighs five factors — two of them dominate.</p>
+  <div class="factors-grid">
+    <div class="factor-row">
+      <div class="factor-pct">35%</div>
+      <div class="factor-body">
+        <h4>Payment History</h4>
+        <p>A single 30-day late payment can drop your score by 60–110 points. On-time payments are the single biggest lever you control.</p>
+      </div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-pct">30%</div>
+      <div class="factor-body">
+        <h4>Credit Utilization</h4>
+        <p>The share of your credit limit you're using. Keep it under 30% — ideally under 10% — for the best scores.</p>
+      </div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-pct">15%</div>
+      <div class="factor-body">
+        <h4>Length of History</h4>
+        <p>Older accounts help. Avoid closing your oldest cards even if you rarely use them.</p>
+      </div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-pct">10%</div>
+      <div class="factor-body">
+        <h4>Credit Mix</h4>
+        <p>Having both revolving (cards) and installment (loans) accounts shows lenders you can manage different debt types.</p>
+      </div>
+    </div>
+    <div class="factor-row">
+      <div class="factor-pct">10%</div>
+      <div class="factor-body">
+        <h4>New Credit Inquiries</h4>
+        <p>Each hard inquiry (a lender checking your credit for an application) can trim 5–10 points. They fade after 12 months.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MID AD -->
+<div class="ad-mid">
+  <!-- Google AdSense: replace this div -->
+  <div class="ad-slot">Advertisement — 728×90</div>
+</div>
+
+<!-- TIPS -->
+<div class="tips-wrap">
+  <h2 class="section-head" style="margin-bottom:0.3rem">How to raise it — fast</h2>
+  <p class="section-sub" style="margin-bottom:1.5rem">Ranked by how quickly you'll see results.</p>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-num">TIP 01</div>
+      <h4>Pay down card balances</h4>
+      <p>Reducing utilization below 10% can add 20–50 points within one billing cycle. It's the fastest move available.</p>
+      <span class="tip-impact">Impact: High · Speed: 30 days</span>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">TIP 02</div>
+      <h4>Dispute errors on your report</h4>
+      <p>One in five reports has an error. Dispute via AnnualCreditReport.com — bureaus must respond within 30 days.</p>
+      <span class="tip-impact">Impact: High · Speed: 30–60 days</span>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">TIP 03</div>
+      <h4>Become an authorized user</h4>
+      <p>Ask a family member with an old, low-utilization card to add you. Their history can appear on your report immediately.</p>
+      <span class="tip-impact">Impact: Medium · Speed: 30 days</span>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">TIP 04</div>
+      <h4>Request a credit limit increase</h4>
+      <p>Same balance, higher limit = lower utilization percentage. Call your card issuer — often approved without a hard pull.</p>
+      <span class="tip-impact">Impact: Medium · Speed: Immediate</span>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">TIP 05</div>
+      <h4>Set up autopay for minimums</h4>
+      <p>Missed payments are the #1 score killer. Autopay for at least the minimum on every account eliminates the risk entirely.</p>
+      <span class="tip-impact">Impact: High · Speed: Ongoing</span>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">TIP 06</div>
+      <h4>Don't close old accounts</h4>
+      <p>Closing a card reduces your available credit and can shorten your average account age — both lower your score.</p>
+      <span class="tip-impact">Impact: Medium · Speed: Preventive</span>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-wrap">
+  <h2 class="section-head" style="margin-bottom:1.5rem">Common questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How often does my credit score update? <span class="arrow">▼</span></div>
+    <div class="faq-a">Lenders report to bureaus roughly once a month — usually on your statement closing date. So your score typically refreshes monthly, though the exact timing varies by creditor.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Does checking my own score hurt it? <span class="arrow">▼</span></div>
+    <div class="faq-a">No. Checking your own score is a "soft inquiry" and has zero effect. Only hard inquiries — when a lender checks your credit for an application — can affect your score.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How long do negative items stay on my report? <span class="arrow">▼</span></div>
+    <div class="faq-a">Most negative items (late payments, collections, charge-offs) stay for 7 years from the date of first delinquency. Bankruptcies can remain for 7–10 years depending on the type.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">What's the difference between FICO and VantageScore? <span class="arrow">▼</span></div>
+    <div class="faq-a">Both use a 300–850 scale and similar factors, but they weigh them differently. FICO is used in roughly 90% of lending decisions. VantageScore is more commonly used in free monitoring tools. A good score on one is generally a good score on the other.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Can I build credit with no credit history? <span class="arrow">▼</span></div>
+    <div class="faq-a">Yes — a secured credit card (backed by a cash deposit) is the most reliable starting point. Use it for small purchases and pay in full each month. You can typically graduate to an unsecured card within 12–18 months.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>ScoreIQ is for educational purposes only — not financial advice. &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Disclaimer</a></p>
+</footer>
+
+<script>
+  // ── Theme toggle ──
+  function toggleTheme() {
+    const isLight = document.body.classList.toggle('light');
+    document.getElementById('theme-icon').textContent  = isLight ? '🌙' : '☀️';
+    document.getElementById('theme-label').textContent = isLight ? 'Dark' : 'Light';
+    document.getElementById('theme-btn').setAttribute('aria-label', isLight ? 'Toggle dark mode' : 'Toggle light mode');
+  }
+
+  const bands = [
+    { name: 'Poor',      min: 300, max: 579, color: '#e05252', seg: 'poor'  },
+    { name: 'Fair',      min: 580, max: 669, color: '#e07d32', seg: 'fair'  },
+    { name: 'Good',      min: 670, max: 739, color: '#d4b800', seg: 'good'  },
+    { name: 'Very Good', min: 740, max: 799, color: '#52b86e', seg: 'vgood' },
+    { name: 'Exceptional',min:800, max: 850, color: '#3ecfcf', seg: 'excl'  },
+  ];
+
+  function getBand(score) {
+    return bands.find(b => score >= b.min && score <= b.max) || bands[0];
+  }
+
+  function scoreToAngle(score) {
+    // 300 → 180°, 850 → 0° (left to right arc)
+    return 180 - ((score - 300) / 550) * 180;
+  }
+
+  function polarToXY(angleDeg, r, cx, cy) {
+    const rad = (angleDeg * Math.PI) / 180;
+    return {
+      x: cx + r * Math.cos(rad),
+      y: cy - r * Math.sin(rad),
+    };
+  }
+
+  function updateGauge(score) {
+    const band = getBand(score);
+    const scoreEl  = document.getElementById('gauge-score-num');
+    const bandEl   = document.getElementById('gauge-band-label');
+    const arcEl    = document.getElementById('gauge-arc');
+    const heroNum  = document.getElementById('hero-num');
+
+    scoreEl.textContent = score;
+    scoreEl.style.color = band.color;
+    bandEl.textContent  = band.name;
+    bandEl.style.color  = band.color;
+    heroNum.textContent = score;
+
+    // Arc path: from left (180°) to score angle
+    const cx = 100, cy = 100, r = 80;
+    const startAngle = 180;
+    const endAngle   = scoreToAngle(score);
+    const start = polarToXY(startAngle, r, cx, cy);
+    const end   = polarToXY(endAngle,   r, cx, cy);
+    const largeArc = (startAngle - endAngle) > 180 ? 1 : 0;
+
+    if (score === 300) {
+      arcEl.setAttribute('d', `M ${start.x} ${start.y} A ${r} ${r} 0 0 1 ${start.x} ${start.y}`);
+    } else {
+      arcEl.setAttribute('d', `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 1 ${end.x} ${end.y}`);
+    }
+    arcEl.setAttribute('stroke', band.color);
+
+    // Dim inactive segments
+    bands.forEach(b => {
+      const seg = document.getElementById('seg-' + b.seg);
+      seg.classList.toggle('dim', b.name !== band.name);
+    });
+  }
+
+  function setScore(val) {
+    document.getElementById('score-range').value = val;
+    updateGauge(val);
+  }
+
+  document.getElementById('score-range').addEventListener('input', function() {
+    updateGauge(+this.value);
+  });
+
+  function toggleFaq(el) {
+    const ans = el.nextElementSibling;
+    const isOpen = ans.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+    if (!isOpen) {
+      ans.classList.add('open');
+      el.classList.add('open');
+    }
+  }
+
+  // Init
+  updateGauge(720);
+</script>
+</body>
+</html>
